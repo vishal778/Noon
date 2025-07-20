@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../redux/reducers';
@@ -45,7 +46,7 @@ const CartReviewScreen = () => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Header title="Order Summary" showBack />
       <FlatList
         data={cartItems}
@@ -81,7 +82,7 @@ const CartReviewScreen = () => {
           <Text style={styles.confirmText}>Confirm Order</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

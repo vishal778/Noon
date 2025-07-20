@@ -1,5 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import {useNavigation, CommonActions} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import {clearCart} from '../../../redux/actions/cartActions';
@@ -34,7 +40,7 @@ const ConfirmationScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header title="Order Confirmed" />
 
       <View style={styles.content}>
@@ -51,7 +57,7 @@ const ConfirmationScreen = () => {
           Redirecting to Home in 3 seconds...
         </Text>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

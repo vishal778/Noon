@@ -8,6 +8,7 @@ import {
   FlatList,
   TouchableOpacity,
   ImageSourcePropType,
+  SafeAreaView,
 } from 'react-native';
 import {useRoute, useNavigation, RouteProp} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -53,7 +54,7 @@ const ProductDetailsScreen = () => {
   );
 
   return (
-    <View style={{flex: 1, backgroundColor: colors.whitef9}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: colors.whitef9}}>
       <Header title="Product Details" showBack showCart />
 
       <View style={styles.carouselWrapper}>
@@ -113,7 +114,7 @@ const ProductDetailsScreen = () => {
           </View>
         )}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

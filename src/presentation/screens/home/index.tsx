@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
+  SafeAreaView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../../redux/reducers';
@@ -63,7 +64,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Header title="Home" showCart />
       <View style={styles.container}>
         <View style={styles.searchWrapper}>
@@ -108,7 +109,7 @@ const HomeScreen = () => {
           contentContainerStyle={styles.scrollContainer}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

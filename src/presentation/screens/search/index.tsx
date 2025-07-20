@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  SafeAreaView,
 } from 'react-native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../redux/reducers';
@@ -65,7 +66,7 @@ const SearchScreen = () => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <SafeAreaView style={{flex: 1}}>
       <Header title="Search" showBack showCart />
 
       <TextInput
@@ -82,7 +83,7 @@ const SearchScreen = () => {
         renderItem={renderItem}
         contentContainerStyle={{paddingBottom: 20}}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
