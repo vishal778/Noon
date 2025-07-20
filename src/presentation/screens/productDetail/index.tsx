@@ -14,11 +14,7 @@ import {useRoute, useNavigation, RouteProp} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootStackParamList} from '../../../navigators/types';
 import {RootState} from '../../../redux/reducers';
-import {
-  addToCart,
-  decreaseQuantity,
-  removeFromCart,
-} from '../../../redux/actions/cartActions';
+import {addToCart, decreaseQuantity} from '../../../redux/actions/cartActions';
 import Header from '../../components/Header';
 import colors from '../../../dls/colors';
 
