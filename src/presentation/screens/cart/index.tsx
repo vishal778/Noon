@@ -28,7 +28,6 @@ const CartScreen = () => {
   const dispatch = useDispatch<any>();
   const navigation = useNavigation<NavigationProp>();
   const cart = useSelector((state: RootState) => state.cartState);
-
   const {subtotal, tax, total} = calculateOrderSummary(cart);
 
   const renderItem = ({item}: any) => (
@@ -63,6 +62,17 @@ const CartScreen = () => {
     </View>
   );
 
+  const renderEmpty = () => (
+    <View style={styles.emptyBox}>
+      <Text style={styles.emptyText}>No items in cart</Text>
+      <TouchableOpacity
+        style={styles.goHomeBtn}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.goHomeText}>Go to Home</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <Header title="Your Cart" showBack />
@@ -70,16 +80,27 @@ const CartScreen = () => {
         data={cart}
         renderItem={renderItem}
         keyExtractor={item => item.product.id}
-        contentContainerStyle={{paddingBottom: 220}}
+        contentContainerStyle={{
+          paddingBottom: cart.length > 0 ? 220 : 0,
+          flexGrow: 1,
+        }}
+        ListEmptyComponent={renderEmpty}
       />
 
       {cart.length > 0 && (
         <View style={styles.summary}>
-          <Text style={styles.summaryText}>
-            Subtotal: ₹{subtotal.toFixed(2)}
-          </Text>
-          <Text style={styles.summaryText}>Tax (10%): ₹{tax.toFixed(2)}</Text>
-          <Text style={styles.totalText}>Total: ₹{total.toFixed(2)}</Text>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Subtotal</Text>
+            <Text style={styles.summaryText}>₹{subtotal.toFixed(2)}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Tax (10%)</Text>
+            <Text style={styles.summaryText}>₹{tax.toFixed(2)}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.totalText}>Total</Text>
+            <Text style={styles.totalText}>₹{total.toFixed(2)}</Text>
+          </View>
 
           <TouchableOpacity
             onPress={() => navigation.navigate('CartReview')}
@@ -159,14 +180,20 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
+  summaryRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 6,
+  },
   summaryText: {
     fontSize: 14,
-    marginBottom: 4,
+    color: '#333',
   },
   totalText: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginVertical: 8,
+    color: '#111',
+    marginVertical: 6,
   },
   checkoutBtn: {
     backgroundColor: 'tomato',
@@ -179,6 +206,28 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 16,
     fontWeight: '600',
+  },
+  emptyBox: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 40,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 20,
+  },
+  goHomeBtn: {
+    backgroundColor: 'tomato',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  goHomeText: {
+    color: colors.white,
+    fontWeight: '600',
+    fontSize: 15,
   },
 });
 

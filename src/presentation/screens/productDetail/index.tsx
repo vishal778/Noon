@@ -14,7 +14,11 @@ import {useRoute, useNavigation, RouteProp} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootStackParamList} from '../../../navigators/types';
 import {RootState} from '../../../redux/reducers';
-import {addToCart, removeFromCart} from '../../../redux/actions/cartActions';
+import {
+  addToCart,
+  decreaseQuantity,
+  removeFromCart,
+} from '../../../redux/actions/cartActions';
 import Header from '../../components/Header';
 import colors from '../../../dls/colors';
 
@@ -46,7 +50,7 @@ const ProductDetailsScreen = () => {
   };
 
   const decreaseQty = () => {
-    dispatch(removeFromCart(product.id));
+    dispatch(decreaseQuantity(product.id));
   };
 
   const renderImage = ({item}: {item: ImageSourcePropType}) => (

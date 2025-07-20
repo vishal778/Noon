@@ -34,22 +34,7 @@ const cartReducer = (state = initialState, action: CartAction): CartItem[] => {
       }
     }
     case REMOVE_FROM_CART:
-      const itemToRemove = state.find(
-        item => item.product.id === action.payload,
-      );
-      if (!itemToRemove) {
-        return state;
-      }
-
-      if (itemToRemove.quantity === 1) {
-        return state.filter(item => item.product.id !== action.payload);
-      }
-
-      return state.map(item =>
-        item.product.id === action.payload
-          ? {...item, quantity: item.quantity - 1}
-          : item,
-      );
+      return state.filter(item => item.product.id !== action.payload);
 
     case INCREASE_QUANTITY:
       return state.map(item =>
@@ -65,7 +50,7 @@ const cartReducer = (state = initialState, action: CartAction): CartItem[] => {
             ? {...item, quantity: item.quantity - 1}
             : item,
         )
-        .filter(item => item.quantity > 0); // remove if qty is 0
+        .filter(item => item.quantity > 0);
 
     case CLEAR_CART:
       return [];
